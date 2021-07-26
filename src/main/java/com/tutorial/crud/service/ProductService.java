@@ -1,6 +1,6 @@
 package com.tutorial.crud.service;
 
-import com.tutorial.crud.entity.Producto;
+import com.tutorial.crud.entity.Product;
 import com.tutorial.crud.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,25 +11,25 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class ProductoService {
+public class ProductService {
 
     @Autowired
     ProductoRepository productoRepository;
 
-    public List<Producto> list(){
+    public List<Product> list(){
         return productoRepository.findAll();
     }
 
-    public Optional<Producto> getOne(int id){
+    public Optional<Product> getOne(int id){
         return productoRepository.findById(id);
     }
 
-    public Optional<Producto> getByNombre(String nombre){
+    public Optional<Product> getByNombre(String nombre){
         return productoRepository.findByNombre(nombre);
     }
 
-    public void  save(Producto producto){
-        productoRepository.save(producto);
+    public void  save(Product product){
+        productoRepository.save(product);
     }
 
     public void delete(int id){

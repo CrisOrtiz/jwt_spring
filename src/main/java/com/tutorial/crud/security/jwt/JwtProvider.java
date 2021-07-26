@@ -1,6 +1,6 @@
 package com.tutorial.crud.security.jwt;
 
-import com.tutorial.crud.security.entity.UsuarioPrincipal;
+import com.tutorial.crud.security.entity.UserPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +21,8 @@ public class JwtProvider {
     private int expiration;
 
     public String generateToken(Authentication authentication){
-        UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
-        return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        return Jwts.builder().setSubject(userPrincipal.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000))
                 .signWith(SignatureAlgorithm.HS512, secret)

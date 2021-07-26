@@ -1,6 +1,6 @@
 package com.tutorial.crud.security.entity;
 
-import com.tutorial.crud.security.enums.RolNombre;
+import com.tutorial.crud.security.enums.RolName;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,13 +12,13 @@ public class Rol {
     private int id;
     @NotNull
     @Enumerated(EnumType.STRING)
-    private RolNombre rolNombre;
+    private RolName rolName;
 
     public Rol() {
     }
 
-    public Rol(@NotNull RolNombre rolNombre) {
-        this.rolNombre = rolNombre;
+    public Rol(@NotNull RolName rolName) {
+        this.rolName = rolName;
     }
 
     public int getId() {
@@ -29,11 +29,11 @@ public class Rol {
         this.id = id;
     }
 
-    public RolNombre getRolNombre() {
-        return rolNombre;
+    public RolName getRolName() {
+        return rolName;
     }
 
-    public void setRolNombre(RolNombre rolNombre) {
-        this.rolNombre = rolNombre;
+    public void setRolName(RolName rolName) {
+        this.rolName = rolName;
     }
 }

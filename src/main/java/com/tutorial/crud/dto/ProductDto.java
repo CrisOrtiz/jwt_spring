@@ -3,17 +3,17 @@ package com.tutorial.crud.dto;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-public class ProductoDto {
+public class ProductDto {
 
     @NotBlank
     private String nombre;
     @Min(0)
     private Float precio;
 
-    public ProductoDto() {
+    public ProductDto() {
     }
 
-    public ProductoDto(@NotBlank String nombre, @Min(0) Float precio) {
+    public ProductDto(@NotBlank String nombre, @Min(0) Float precio) {
         this.nombre = nombre;
         this.precio = precio;
     }

@@ -1,6 +1,6 @@
 package com.tutorial.crud.security.jwt;
 
-import com.tutorial.crud.security.entity.UserPrincipal;
+import com.tutorial.crud.security.entities.UserPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,8 @@
 package com.tutorial.crud.security.service;
 
-import com.tutorial.crud.security.entity.User;
-import com.tutorial.crud.security.entity.UserPrincipal;
+import com.tutorial.crud.entity.User;
+import com.tutorial.crud.security.entities.UserPrincipal;
+import com.tutorial.crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

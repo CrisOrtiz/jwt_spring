@@ -1,8 +1,8 @@
 package com.tutorial.crud.util;
 
-import com.tutorial.crud.security.entity.Rol;
-import com.tutorial.crud.security.enums.RolName;
-import com.tutorial.crud.security.service.RolService;
+import com.tutorial.crud.entity.Role;
+import com.tutorial.crud.enums.RoleName;
+import com.tutorial.crud.service.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -21,9 +21,9 @@ public class CreateRoles implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-         /**Rol rolAdmin = new Rol(RolName.ROLE_ADMIN);
-         Rol rolUser = new Rol(RolName.ROLE_USER);
+         Role rolAdmin = new Role(RoleName.ROLE_ADMIN);
+         Role rolUser = new Role(RoleName.ROLE_USER);
          rolService.save(rolAdmin);
-         rolService.save(rolUser);*/
+         rolService.save(rolUser);
     }
 }

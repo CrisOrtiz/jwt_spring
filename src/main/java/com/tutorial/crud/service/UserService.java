@@ -1,7 +1,7 @@
-package com.tutorial.crud.security.service;
+package com.tutorial.crud.service;
 
-import com.tutorial.crud.security.entity.User;
-import com.tutorial.crud.security.repository.UserRepository;
+import com.tutorial.crud.entity.User;
+import com.tutorial.crud.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

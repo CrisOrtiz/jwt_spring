@@ -1,5 +1,6 @@
-package com.tutorial.crud.security.entity;
+package com.tutorial.crud.security.entities;
 
+import com.tutorial.crud.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

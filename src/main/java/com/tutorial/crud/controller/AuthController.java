@@ -1,15 +1,15 @@
-package com.tutorial.crud.security.controller;
+package com.tutorial.crud.controller;
 
 import com.tutorial.crud.dto.Message;
 import com.tutorial.crud.security.responses.JwtResponse;
-import com.tutorial.crud.security.requests.LoginUser;
-import com.tutorial.crud.security.requests.NewUser;
-import com.tutorial.crud.security.entity.Rol;
-import com.tutorial.crud.security.entity.User;
-import com.tutorial.crud.security.enums.RolName;
+import com.tutorial.crud.requests.LoginUser;
+import com.tutorial.crud.requests.NewUser;
+import com.tutorial.crud.entity.Role;
+import com.tutorial.crud.entity.User;
+import com.tutorial.crud.enums.RoleName;
 import com.tutorial.crud.security.jwt.JwtProvider;
-import com.tutorial.crud.security.service.RolService;
-import com.tutorial.crud.security.service.UserService;
+import com.tutorial.crud.service.RolService;
+import com.tutorial.crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,10 +62,10 @@ public class AuthController {
         User user =
             new User(userName.getName(), userName.getUserName(), userName.getEmail(),
                 passwordEncoder.encode(userName.getPassword()));
-        Set<Rol> roles = new HashSet<>();
-        roles.add(rolService.getByRolName(RolName.ROLE_USER).get());
+        Set<Role> roles = new HashSet<>();
+        roles.add(rolService.getByRolName(RoleName.ROLE_USER).get());
         if (userName.getRoles().contains("admin")) {
-            roles.add(rolService.getByRolName(RolName.ROLE_ADMIN).get());
+            roles.add(rolService.getByRolName(RoleName.ROLE_ADMIN).get());
         }
         user.setRoles(roles);
         userService.save(user);

@@ -1,5 +1,6 @@
-package com.tutorial.crud.security.entity;
+package com.tutorial.crud.entity;
 
+import com.tutorial.crud.entity.Role;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -23,7 +24,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
-    private Set<Rol> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -75,11 +76,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<Rol> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Rol> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 }

@@ -1,26 +1,15 @@
 package org.jala.foundation.dev32.jwt.example.requests;
 
 import javax.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class LoginUser {
-    @NotBlank
-    private String userName;
-    @NotBlank
-    private String password;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  @NotBlank
+  private String userName;
+  @NotBlank
+  private String password;
 }

@@ -1,21 +1,16 @@
 package org.jala.foundation.dev32.jwt.example.security.responses;
 
+import java.util.Collection;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Collection;
-
+@Getter
+@Setter
 public class JwtResponse {
     private String token;
 
     public JwtResponse(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
         this.token = token;
     }
 }

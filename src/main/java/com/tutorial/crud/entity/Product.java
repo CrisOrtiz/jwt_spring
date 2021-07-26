@@ -6,17 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Producto {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
     private float precio;
 
-    public Producto() {
+    public Product() {
     }
 
-    public Producto(String nombre, float precio) {
+    public Product(String nombre, float precio) {
         this.nombre = nombre;
         this.precio = precio;
     }

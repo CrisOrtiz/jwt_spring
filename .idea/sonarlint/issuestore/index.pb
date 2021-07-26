@@ -1,21 +1,9 @@
 
-d
-4src/main/java/com/tutorial/crud/CrudApplication.java,3\c\3c8fa2f97762959e24d31b5acfc611bc14923368
-e
-5src/main/java/com/tutorial/crud/util/CreateRoles.java,6\3\6329f745362e4c2bbae45c593b253405450a11a0
 m
 =src/main/java/com/tutorial/crud/security/enums/RolNombre.java,8\8\8886370c07f18846fdd74a30761a2c608ca124de
-z
-Jsrc/main/java/com/tutorial/crud/security/repository/UsuarioRepository.java,b\a\baeb71b6b76e7146c0451e9edb05a5afd21d4f89
-r
-Bsrc/main/java/com/tutorial/crud/controller/ProductoController.java,d\0\d09ada91fa09d01948775aba45d50e2e8bbef01d
 l
 <src/main/java/com/tutorial/crud/security/entity/Usuario.java,8\b\8b46a0f44364f3b1e04ea8a0cccf2c436c6ea762
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 j
 :src/main/java/com/tutorial/crud/security/MainSecurity.java,f\7\f7b10910212a76ffa91cbe9aa63efbced3b5c8e5
-w
-Gsrc/main/java/com/tutorial/crud/security/controller/AuthController.java,a\9\a98ac160122fd8501459f0a371d2a3da42c709aa
-h
-8src/main/java/com/tutorial/crud/security/entity/Rol.java,0\2\02f2a220ee900fd197ac4d6e0e6ced4ae984b709

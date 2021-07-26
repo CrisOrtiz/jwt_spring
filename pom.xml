@@ -8,8 +8,8 @@
 		<version>2.5.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.tutorial</groupId>
-	<artifactId>crud</artifactId>
+	<groupId>org.jala.foundation.dev32.jwt.example</groupId>
+	<artifactId>example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>crud</name>
 	<description>Demo project for Spring Boot</description>

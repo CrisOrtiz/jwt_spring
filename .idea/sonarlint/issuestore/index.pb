@@ -7,8 +7,6 @@ m
 =src/main/java/com/tutorial/crud/security/enums/RolNombre.java,8\8\8886370c07f18846fdd74a30761a2c608ca124de
 z
 Jsrc/main/java/com/tutorial/crud/security/repository/UsuarioRepository.java,b\a\baeb71b6b76e7146c0451e9edb05a5afd21d4f89
-s
-Csrc/main/java/com/tutorial/crud/security/responses/JwtResponse.java,4\b\4b1c1bc2db230d09e2f9fec1a8af6296b68c5285
 r
 Bsrc/main/java/com/tutorial/crud/controller/ProductoController.java,d\0\d09ada91fa09d01948775aba45d50e2e8bbef01d
 l

@@ -2,18 +2,18 @@ package com.tutorial.crud.security.requests;
 
 import javax.validation.constraints.NotBlank;
 
-public class LoginUsuario {
+public class LoginUser {
     @NotBlank
-    private String nombreUsuario;
+    private String userName;
     @NotBlank
     private String password;
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

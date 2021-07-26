@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
+    private final Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 
     @Autowired
     JwtProvider jwtProvider;
@@ -26,21 +26,21 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     UserDetailsServiceImpl userDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            String token = getToken(req);
+            String token = getToken(request);
             if(token != null && jwtProvider.validateToken(token)){
-                String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);
-                UserDetails userDetails = userDetailsService.loadUserByUsername(nombreUsuario);
+                String userName = jwtProvider.getUserNameFromToken(token);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 
                 UsernamePasswordAuthenticationToken auth =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         } catch (Exception e){
-            logger.error("fail en el método doFilter " + e.getMessage());
+            logger.error("Fail on doFilter method " + e.getMessage());
         }
-        filterChain.doFilter(req, res);
+        filterChain.doFilter(request, response);
     }
 
     private String getToken(HttpServletRequest request){

@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Component
 public class JwtProvider {
-    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+    private final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     @Value("${jwt.secret}")
     private String secret;
@@ -29,7 +29,7 @@ public class JwtProvider {
                 .compact();
     }
 
-    public String getNombreUsuarioFromToken(String token){
+    public String getUserNameFromToken(String token){
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
 
@@ -38,15 +38,15 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
         }catch (MalformedJwtException e){
-            logger.error("token mal formado");
+            logger.error("Malformed token");
         }catch (UnsupportedJwtException e){
-            logger.error("token no soportado");
+            logger.error("Unsupported token");
         }catch (ExpiredJwtException e){
-            logger.error("token expirado");
+            logger.error("Expired token");
         }catch (IllegalArgumentException e){
-            logger.error("token vacío");
+            logger.error("Empty token");
         }catch (SignatureException e){
-            logger.error("fail en la firma");
+            logger.error("Fail on signature");
         }
         return false;
     }

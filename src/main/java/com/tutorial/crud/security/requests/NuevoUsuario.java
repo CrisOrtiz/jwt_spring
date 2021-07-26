@@ -1,4 +1,4 @@
-package com.tutorial.crud.security.responses;
+package com.tutorial.crud.security.requests;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

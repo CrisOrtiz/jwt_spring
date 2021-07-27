@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class GreetingController {
 
-  @Autowired
-  ProductService productService;
-
   @GetMapping()
   public ResponseEntity<String> greeting() {
     return ResponseEntity.ok("Hello world");

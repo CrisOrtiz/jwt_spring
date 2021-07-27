@@ -1,13 +1,16 @@
 package org.jala.foundation.dev32.jwt.example.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.validation.Valid;
 import org.jala.foundation.dev32.jwt.example.dto.Message;
-import org.jala.foundation.dev32.jwt.example.security.responses.JwtResponse;
-import org.jala.foundation.dev32.jwt.example.requests.LoginUser;
-import org.jala.foundation.dev32.jwt.example.requests.NewUser;
 import org.jala.foundation.dev32.jwt.example.entity.Role;
 import org.jala.foundation.dev32.jwt.example.entity.User;
 import org.jala.foundation.dev32.jwt.example.enums.RoleName;
+import org.jala.foundation.dev32.jwt.example.requests.LoginUser;
+import org.jala.foundation.dev32.jwt.example.requests.NewUser;
 import org.jala.foundation.dev32.jwt.example.security.jwt.JwtProvider;
+import org.jala.foundation.dev32.jwt.example.security.responses.JwtResponse;
 import org.jala.foundation.dev32.jwt.example.service.RolService;
 import org.jala.foundation.dev32.jwt.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,72 +23,72 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/auth/")
 @CrossOrigin
 public class AuthController {
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+  @Autowired
+  PasswordEncoder passwordEncoder;
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+  @Autowired
+  AuthenticationManager authenticationManager;
 
-    @Autowired
-    UserService userService;
+  @Autowired
+  UserService userService;
 
-    @Autowired
-    RolService rolService;
+  @Autowired
+  RolService rolService;
 
-    @Autowired
-    JwtProvider jwtProvider;
+  @Autowired
+  JwtProvider jwtProvider;
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(@Valid @RequestBody NewUser userName,
-        BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity(new Message("Wrong fields or invalid email"),
-                HttpStatus.BAD_REQUEST);
-        }
-        if (userService.existsByUserName(userName.getUserName())) {
-            return new ResponseEntity(new Message("Name already exists"), HttpStatus.BAD_REQUEST);
-        }
-        if (userService.existsByEmail(userName.getEmail())) {
-            return new ResponseEntity(new Message("Email already exists"), HttpStatus.BAD_REQUEST);
-        }
-        User user =
-            new User(userName.getName(), userName.getUserName(), userName.getEmail(),
-                passwordEncoder.encode(userName.getPassword()));
-        Set<Role> roles = new HashSet<>();
-        roles.add(rolService.getByRolName(RoleName.ROLE_USER).get());
-        if (userName.getRoles().contains("admin")) {
-            roles.add(rolService.getByRolName(RoleName.ROLE_ADMIN).get());
-        }
-        user.setRoles(roles);
-        userService.save(user);
-        return new ResponseEntity(new Message("Saved user"), HttpStatus.CREATED);
+  @PostMapping("/signup")
+  public ResponseEntity<?> signup(@Valid @RequestBody NewUser userName,
+      BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      return new ResponseEntity(new Message("Wrong fields or invalid email"),
+          HttpStatus.BAD_REQUEST);
     }
-
-    @PostMapping("/login")
-    public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginUser loginUser,
-        BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity(new Message("wrong fields"), HttpStatus.BAD_REQUEST);
-        }
-        Authentication authentication =
-            authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginUser.getUserName(),
-                    loginUser.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtProvider.generateToken(authentication);
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        JwtResponse jwtResponse = new JwtResponse(jwt);
-        return new ResponseEntity(jwtResponse, HttpStatus.OK);
+    if (userService.existsByUserName(userName.getUserName())) {
+      return new ResponseEntity(new Message("Name already exists"), HttpStatus.BAD_REQUEST);
     }
+    if (userService.existsByEmail(userName.getEmail())) {
+      return new ResponseEntity(new Message("Email already exists"), HttpStatus.BAD_REQUEST);
+    }
+    User user =
+        new User(userName.getName(), userName.getUserName(), userName.getEmail(),
+            passwordEncoder.encode(userName.getPassword()));
+    Set<Role> roles = new HashSet<>();
+    roles.add(rolService.getByRolName(RoleName.ROLE_USER).get());
+    if (userName.getRoles().contains("admin")) {
+      roles.add(rolService.getByRolName(RoleName.ROLE_ADMIN).get());
+    }
+    user.setRoles(roles);
+    userService.save(user);
+    return new ResponseEntity(new Message("Saved user"), HttpStatus.CREATED);
+  }
+
+  @PostMapping("/login")
+  public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginUser loginUser,
+      BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      return new ResponseEntity(new Message("wrong fields"), HttpStatus.BAD_REQUEST);
+    }
+    Authentication authentication =
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(loginUser.getUserName(),
+                loginUser.getPassword()));
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+    String jwt = jwtProvider.generateToken(authentication);
+    UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    JwtResponse jwtResponse = new JwtResponse(jwt);
+    return new ResponseEntity(jwtResponse, HttpStatus.OK);
+  }
 }

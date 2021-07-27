@@ -1,9 +1,7 @@
-package org.jala.foundation.dev32.jwt.example.security.responses;
+package org.jala.foundation.dev32.jwt.example.responses;
 
-import java.util.Collection;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 
 @Getter
 @Setter

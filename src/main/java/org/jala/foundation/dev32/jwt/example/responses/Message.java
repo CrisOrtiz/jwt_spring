@@ -1,4 +1,4 @@
-package org.jala.foundation.dev32.jwt.example.dto;
+package org.jala.foundation.dev32.jwt.example.responses;
 
 import lombok.Getter;
 import lombok.Setter;
